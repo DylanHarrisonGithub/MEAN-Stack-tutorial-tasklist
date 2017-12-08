@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { TasksComponent } from './components/tasks/tasks.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
     TasksComponent
   ],
   imports: [
-    BrowserModule, HttpModule
+    BrowserModule, HttpModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
