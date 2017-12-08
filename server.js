@@ -3,29 +3,31 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
- var index = require('./routes/index');
- var tasks = require('./routes/tasks');
+var tasks = require('./routes/tasks');
 
- var port = 3000;
+var port = 3000;
 
- var app = express();
- app.use(cors());
- 
- //view engine
- app.set('views', path.join(__dirname, 'views'));
- app.set('view engine', 'ejs');
- app.engine('html', require('ejs').renderFile);
+var app = express();
+app.use(cors());
 
- //set static folder
- app.use(express.static(path.join(__dirname, 'client')));
+//view engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
 
- //body parser middleware
- app.use(bodyParser.json());
- app.use(bodyParser.urlencoded({extended: false}));
+//set static folder
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
- app.use('/', index);
- app.use('/api', tasks);
+//body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
- app.listen(port, function() {
-     console.log('Server started on port ' + port);
- });
+app.use('/api', tasks);
+
+app.get("/", (request, response) => {
+    response.sendFile('index.html');
+});
+
+app.listen(port, function() {
+    console.log('Server started on port ' + port);
+});
