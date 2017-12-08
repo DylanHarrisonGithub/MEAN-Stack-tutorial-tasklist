@@ -9,7 +9,7 @@ var cors = require('cors');
  var port = 3000;
 
  var app = express();
- app.use(cors())
+ app.use(cors());
  
  //view engine
  app.set('views', path.join(__dirname, 'views'));
